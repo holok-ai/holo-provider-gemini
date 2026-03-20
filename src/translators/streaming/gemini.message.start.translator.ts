@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import {injectable} from 'tsyringe';
 import {v4 as uuidv4} from 'uuid';
 import {GeminiUsageTranslator} from '../gemini.usage.translator';
-import {StreamTranslator} from "@holokai/sdk/provider";
-import type {HoloStreamChunk} from "@holokai/types/holo";
+import {StreamTranslator} from "@holokai/holo-sdk/provider";
+import type {HoloStreamChunk} from "@holokai/holo-types/holo";
 import type {GenerateContentResponse} from "@google/genai";
 
 @injectable()

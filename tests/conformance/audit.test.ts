@@ -1,5 +1,5 @@
 import {describe, it} from 'vitest';
-import {runAuditContract} from '@holokai/test-utils';
+import {runAuditContract} from '@holokai/test-sdk';
 import generateStreaming from '../fixtures/generate.streaming.fixture.js';
 import generateNonStreaming from '../fixtures/generate.nonstreaming.fixture.js';
 

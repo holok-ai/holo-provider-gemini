@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import {GeminiMessageTranslator} from "./gemini.message.translator";
 import {GeminiToolChoiceTranslator, GeminiToolTranslator} from "./gemini.tool.translator";
 import {injectable} from 'tsyringe';
-import {HoloRequestDefaults, pickDefined} from "@holokai/sdk";
-import type {HoloMessage, HoloRequest, HoloResponseFormat, HoloTool, HoloToolChoice} from "@holokai/types/holo";
-import {BaseTranslator} from "@holokai/sdk/provider";
+import {HoloRequestDefaults, pickDefined} from "@holokai/holo-sdk";
+import type {HoloMessage, HoloRequest, HoloResponseFormat, HoloTool, HoloToolChoice} from "@holokai/holo-types/holo";
+import {BaseTranslator} from "@holokai/holo-sdk/provider";
 import type {Content, FunctionCallingConfig, FunctionDeclaration, GenerateContentConfig} from "@google/genai";
 
 interface GeminiRequest {

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import {GeminiResponseContentTranslator} from "./gemini.response.content.translator";
 import {injectable} from 'tsyringe';
-import {BaseTranslator} from "@holokai/sdk/provider";
-import {pickDefined} from "@holokai/sdk";
-import type {HoloContent, HoloMessage} from "@holokai/types/holo";
+import {BaseTranslator} from "@holokai/holo-sdk/provider";
+import {pickDefined} from "@holokai/holo-sdk";
+import type {HoloContent, HoloMessage} from "@holokai/holo-types/holo";
 import type {Content, Part} from "@google/genai";
 
 @injectable()

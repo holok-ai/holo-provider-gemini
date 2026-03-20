@@ -1,4 +1,4 @@
-import {BaseWireAdapter} from "@holokai/sdk/provider";
+import {BaseWireAdapter} from "@holokai/holo-sdk/provider";
 
 export class GeminiWireAdapter extends BaseWireAdapter {
     formatWire(data: any): string {

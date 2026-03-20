@@ -16,9 +16,9 @@ import {
     GeminiToolTranslator,
     GeminiUsageTranslator
 } from "./translators";
-import type {IProviderTranslator} from "@holokai/types/provider";
-import {ClassLogger} from "@holokai/sdk";
-import type {HoloMessage, HoloRequest, HoloResponse, HoloStreamChunk} from "@holokai/types/holo";
+import type {IProviderTranslator} from "@holokai/holo-types/provider";
+import {ClassLogger} from "@holokai/holo-sdk";
+import type {HoloMessage, HoloRequest, HoloResponse, HoloStreamChunk} from "@holokai/holo-types/holo";
 import type {Content, GenerateContentConfig, GenerateContentResponse} from "@google/genai";
 
 interface GeminiRequest {

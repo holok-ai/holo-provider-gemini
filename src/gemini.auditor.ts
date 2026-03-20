@@ -1,10 +1,10 @@
 import {injectable} from 'tsyringe';
-import {BaseAuditor} from "@holokai/sdk/provider";
-import {extractPromptByRole, extractTextParts, extractTopLevelPrompt, pickDefined} from "@holokai/sdk";
-import type {ProviderDoneEvent, ProviderEvent} from "@holokai/types/provider";
-import type {HoloWorkerRequest, WorkerResponseEnvelope} from "@holokai/types/worker";
-import type {ProviderEnvelope, ProviderResponseMetrics} from "@holokai/types/entities";
-import {FinishReason, ProviderResponseStatus} from "@holokai/types/entities";
+import {BaseAuditor} from "@holokai/holo-sdk/provider";
+import {extractPromptByRole, extractTextParts, extractTopLevelPrompt, pickDefined} from "@holokai/holo-sdk";
+import type {ProviderDoneEvent, ProviderEvent} from "@holokai/holo-types/provider";
+import type {HoloWorkerRequest, WorkerResponseEnvelope} from "@holokai/holo-types/worker";
+import type {ProviderEnvelope, ProviderResponseMetrics} from "@holokai/holo-types/entities";
+import {FinishReason, ProviderResponseStatus} from "@holokai/holo-types/entities";
 import {GeminiProtocols} from "./plugin";
 import {
     EmbedContentParameters,

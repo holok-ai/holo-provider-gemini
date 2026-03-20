@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {injectable} from 'tsyringe';
-import type {HoloStreamChunk} from "@holokai/types/holo";
-import {StreamTranslator} from "@holokai/sdk/provider";
+import type {HoloStreamChunk} from "@holokai/holo-types/holo";
+import {StreamTranslator} from "@holokai/holo-sdk/provider";
 import type {GenerateContentResponse} from "@google/genai";
 
 @injectable()

@@ -1,4 +1,4 @@
-import type {HoloFinishReason} from '@holokai/types/holo';
+import type {HoloFinishReason} from '@holokai/holo-types/holo';
 
 const geminiToHolo: Record<string, HoloFinishReason> = {
     'STOP': 'stop',

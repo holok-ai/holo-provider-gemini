@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import {injectable} from 'tsyringe';
-import {pickDefined} from '@holokai/sdk';
-import type {HoloStreamChunk} from '@holokai/types/holo';
+import {pickDefined} from '@holokai/holo-sdk';
+import type {HoloStreamChunk} from '@holokai/holo-types/holo';
 import type {GenerateContentResponse} from "@google/genai";
 import {FinishReason} from '@google/genai';
 import {toGeminiFinishReason, toHoloFinishReason} from '../../utils/finish.reason.mapper.js';
-import {StreamTranslator} from "@holokai/sdk/provider";
+import {StreamTranslator} from "@holokai/holo-sdk/provider";
 import {GeminiUsageTranslator} from '../gemini.usage.translator';
 
 @injectable()

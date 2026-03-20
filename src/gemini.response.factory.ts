@@ -1,6 +1,6 @@
-import {pickDefined} from '@holokai/sdk';
-import type {IResponseFactory} from '@holokai/types/provider';
-import type {HoloErrorCode} from '@holokai/types/holo';
+import {pickDefined} from '@holokai/holo-sdk';
+import type {IResponseFactory} from '@holokai/holo-types/provider';
+import type {HoloErrorCode} from '@holokai/holo-types/holo';
 
 export type GeminiErrorStatus =
     'INVALID_ARGUMENT'

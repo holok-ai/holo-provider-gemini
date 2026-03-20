@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import {injectable} from 'tsyringe';
-import {BaseTranslator} from "@holokai/sdk/provider";
-import {pickDefined} from "@holokai/sdk";
-import type {HoloTool, HoloToolChoice} from "@holokai/types/holo";
+import {BaseTranslator} from "@holokai/holo-sdk/provider";
+import {pickDefined} from "@holokai/holo-sdk";
+import type {HoloTool, HoloToolChoice} from "@holokai/holo-types/holo";
 import type {FunctionCallingConfig, FunctionDeclaration} from "@google/genai";
 import {FunctionCallingConfigMode} from "@google/genai";
 

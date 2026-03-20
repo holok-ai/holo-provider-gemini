@@ -1,5 +1,5 @@
-import {BaseProvider} from '@holokai/sdk/provider';
-import type {IAuditor, IProviderTranslator, IResponseFactory, ProviderContext} from '@holokai/types/provider';
+import {BaseProvider} from '@holokai/holo-sdk/provider';
+import type {IAuditor, IProviderTranslator, IResponseFactory, ProviderContext} from '@holokai/holo-types/provider';
 import {EmbedContentParameters, GenerateContentParameters, GoogleGenAI} from '@google/genai';
 import {GeminiAuditor} from './gemini.auditor.js';
 import {GeminiTranslator} from './gemini.translator.js';
