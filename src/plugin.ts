@@ -71,7 +71,11 @@ export class GeminiProviderPlugin extends BasePlugin implements IProviderPlugin 
                 handler: RouteHandler.REQUEST,
                 protocol: {
                     name: GeminiProtocols.GENERATE_CONTENT,
-                    capability: ProtocolCapability.CHAT
+                    capability: ProtocolCapability.CHAT,
+                    streamEventSequence: {
+                        ordered: ['message_start', 'content_delta', 'message_delta', 'message_stop'],
+                        repeatable: ['content_delta'],
+                    }
                 }
             },
             {
@@ -80,7 +84,11 @@ export class GeminiProviderPlugin extends BasePlugin implements IProviderPlugin 
                 handler: RouteHandler.REQUEST,
                 protocol: {
                     name: GeminiProtocols.STREAM_GENERATE_CONTENT,
-                    capability: ProtocolCapability.CHAT
+                    capability: ProtocolCapability.CHAT,
+                    streamEventSequence: {
+                        ordered: ['message_start', 'content_delta', 'message_delta', 'message_stop'],
+                        repeatable: ['content_delta'],
+                    }
                 }
             },
             {

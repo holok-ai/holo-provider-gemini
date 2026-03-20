@@ -63,7 +63,7 @@
     "@google/genai": "^0.11.0"
   },
   "devDependencies": {
-    "@holokai/test-sdk": "*",
+    "@holokai/holo-test": "*",
     "@types/node": "^24.0.11",
     "typescript": "^5.8.3"
   }
