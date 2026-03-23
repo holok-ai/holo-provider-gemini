@@ -18,7 +18,7 @@ import {
 } from "./translators";
 import type {IProviderTranslator} from "@holokai/holo-types/provider";
 import {ClassLogger} from "@holokai/holo-sdk";
-import type {HoloMessage, HoloRequest, HoloResponse, HoloStreamChunk} from "@holokai/holo-types/holo";
+import type {HoloEmbedParams, HoloMessage, HoloRequest, HoloResponse, HoloStreamChunk} from "@holokai/holo-types/holo";
 import type {Content, GenerateContentConfig, GenerateContentResponse} from "@google/genai";
 
 interface GeminiRequest {
@@ -96,5 +96,24 @@ export class GeminiTranslator extends ClassLogger implements IProviderTranslator
 
     async fromHoloStreamChunks(chunks: HoloStreamChunk[]): Promise<unknown> {
         return this.streamTranslator.fromHoloManyArray(chunks);
+    }
+
+    async fromHoloEmbedRequest(request: HoloEmbedParams): Promise<any> {
+        const text = Array.isArray(request.input) ? request.input.join(' ') : request.input;
+        return {
+            model: request.model,
+            contents: {parts: [{text}]},
+        };
+    }
+
+    async toHoloEmbedResponse(response: any): Promise<{ model: string; embeddings: number[][]; usage?: any }> {
+        const model = response?.model ?? '';
+        if (response?.embeddings?.[0]?.values) {
+            return {model, embeddings: response.embeddings.map((e: any) => e.values)};
+        }
+        if (response?.embedding?.values) {
+            return {model, embeddings: [response.embedding.values]};
+        }
+        return {model, embeddings: []};
     }
 }

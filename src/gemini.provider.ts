@@ -62,16 +62,16 @@ export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
 
                             let finalResponse: any;
                             for await (const chunk of stream) {
-                                if (chunk.candidates?.[0]?.finishReason) {
-                                    finalResponse = chunk;
-                                    break;
-                                }
-
                                 ctx.emitStreamEvent(chunk);
 
                                 const text = chunk.candidates?.[0]?.content?.parts?.[0]?.text;
                                 if (text) {
                                     ctx.emitTextDelta(text);
+                                }
+
+                                if (chunk.candidates?.[0]?.finishReason) {
+                                    finalResponse = chunk;
+                                    break;
                                 }
                             }
                             return finalResponse;
@@ -96,6 +96,11 @@ export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
     }
 
     protected async handleError(error: any): Promise<GeminiErrorResponse> {
+        return this.parseGeminiError(error)
+            ?? this.responseFactory.createError(error.message, 'api_error');
+    }
+
+    private parseGeminiError(error: any): GeminiErrorResponse | undefined {
         if (error.status && error.statusText) {
             return {
                 error: {
@@ -105,7 +110,23 @@ export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
                 }
             };
         }
-        return this.responseFactory.createError(error.message, 'api_error');
+
+        const match = error.message?.match(/^got status: (\d+)\s+[^.]*\.\s*(.*)/s);
+        if (match) {
+            const httpStatus = parseInt(match[1], 10);
+            let body: any;
+            try { body = JSON.parse(match[2]); } catch { /* unparseable body */ }
+            const geminiError = body?.error;
+            return {
+                error: {
+                    code: httpStatus,
+                    message: geminiError?.message || error.message,
+                    status: geminiError?.status || this.mapHttpStatusToGeminiStatus(httpStatus)
+                }
+            };
+        }
+
+        return undefined;
     }
 
     private mapHttpStatusToGeminiStatus(status: number): GeminiErrorStatus {
