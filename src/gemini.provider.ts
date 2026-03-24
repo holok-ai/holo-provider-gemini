@@ -1,5 +1,5 @@
 import {BaseProvider} from '@holokai/holo-sdk/provider';
-import type {IAuditor, IProviderTranslator, IResponseFactory, ProviderContext} from '@holokai/holo-types/provider';
+import type {DiscoveredModel, IAuditor, IProviderTranslator, IResponseFactory, ProviderContext} from '@holokai/holo-types/provider';
 import {EmbedContentParameters, GenerateContentParameters, GoogleGenAI} from '@google/genai';
 import {GeminiAuditor} from './gemini.auditor.js';
 import {GeminiTranslator} from './gemini.translator.js';
@@ -21,6 +21,31 @@ export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
         return response.filter(model =>
             allowedModels.includes(model.name?.replace('models/', '') ?? '')
         );
+    }
+
+    async discoverModels(): Promise<DiscoveredModel[]> {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${this._config.apiKey}`;
+        const res = await fetch(url);
+        const data = await res.json() as { models?: any[] };
+        const models = data.models ?? [];
+
+        return models.map(m => {
+            const modelId = m.name ?? '';
+            const shortName = modelId.replace(/^models\//, '');
+            const displayName = m.displayName ?? shortName;
+            return {
+                name: displayName,
+                accessModel: modelId,
+                description: displayName !== modelId
+                    ? `${displayName} (Model ID: ${modelId})`
+                    : `AI Model: ${modelId}`,
+                version: shortName.match(/-(\d+\.\d+(?:\.\d+)?)/)?.[1]
+                    ?? shortName.match(/-(\d{4})/)?.[1]
+                    ?? '1.0',
+                contextLength: m.inputTokenLimit ?? undefined,
+                metadata: m,
+            };
+        });
     }
 
     async getModelNameFromRequest(payload: EmbedContentParameters | GenerateContentParameters): Promise<string> {

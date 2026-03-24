@@ -107,6 +107,10 @@ export class GeminiProviderPlugin extends BasePlugin implements IProviderPlugin 
         return normalizePricingDataset(GEMINI_PRICING_DATASET);
     }
 
+    getPricingModelIds() {
+        return GEMINI_PRICING_DATASET.model_ids;
+    }
+
     getDefaultPricing(): PluginPricingSheet {
         const sheets = this.getPricingSheets();
         const sorted = Array.from(sheets.values()).sort(
