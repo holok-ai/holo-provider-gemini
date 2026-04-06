@@ -18,12 +18,6 @@ import {
 export class GeminiAuditor extends BaseAuditor {
     readonly provider = 'gemini';
 
-    protected async extractRequestOptions(workerRequest: HoloWorkerRequest): Promise<Record<string, any>> {
-        return {
-            ...(workerRequest.payload as EmbedContentParameters | GenerateContentParameters).config
-        }
-    }
-
     override mapFinishReason(nativeResponse: any, _protocolName?: string): HoloFinishReason {
         if (!nativeResponse) return 'stop';
         const candidates = nativeResponse.candidates;
@@ -52,6 +46,12 @@ export class GeminiAuditor extends BaseAuditor {
             output_tokens: usage.candidatesTokenCount,
             total_tokens: usage.totalTokenCount,
         });
+    }
+
+    protected async extractRequestOptions(workerRequest: HoloWorkerRequest): Promise<Record<string, any>> {
+        return {
+            ...(workerRequest.payload as EmbedContentParameters | GenerateContentParameters).config
+        }
     }
 
     protected async mapProviderResponseMetrics(providerEvent: ProviderDoneEvent, protocolName: string) {

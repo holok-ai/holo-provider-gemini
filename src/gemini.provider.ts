@@ -1,5 +1,11 @@
 import {BaseProvider} from '@holokai/holo-sdk/provider';
-import type {DiscoveredModel, IAuditor, IProviderTranslator, IResponseFactory, ProviderContext} from '@holokai/holo-types/provider';
+import type {
+    DiscoveredModel,
+    IAuditor,
+    IProviderTranslator,
+    IResponseFactory,
+    ProviderContext
+} from '@holokai/holo-types/provider';
 import {EmbedContentParameters, GenerateContentParameters, GoogleGenAI} from '@google/genai';
 import {GeminiAuditor} from './gemini.auditor.js';
 import {GeminiTranslator} from './gemini.translator.js';
@@ -140,7 +146,10 @@ export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
         if (match) {
             const httpStatus = parseInt(match[1], 10);
             let body: any;
-            try { body = JSON.parse(match[2]); } catch { /* unparseable body */ }
+            try {
+                body = JSON.parse(match[2]);
+            } catch { /* unparseable body */
+            }
             const geminiError = body?.error;
             return {
                 error: {
