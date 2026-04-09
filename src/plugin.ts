@@ -1,5 +1,5 @@
 import {BasePlugin, normalizePricingDataset} from '@holokai/holo-sdk/plugin';
-import type {IProviderPlugin, PluginContext, PluginPricingSheet} from '@holokai/holo-types/plugin';
+import type {IProviderPlugin, PluginContext, PluginPricingSheet, PluginSchema} from '@holokai/holo-types/plugin';
 import type {PricingSheetModel} from '@holokai/holo-types/entities';
 import {ProtocolCapability} from "@holokai/holo-types/entities";
 import {manifest} from "./manifest.js";
@@ -42,6 +42,28 @@ export class GeminiProviderPlugin extends BasePlugin implements IProviderPlugin 
     getProtocolByCapability(capability: ProtocolCapability): string | undefined {
         const route = this.getRoutes().find(r => r.protocol.capability === capability);
         return route?.protocol.name;
+    }
+
+    getSchema(): PluginSchema {
+        return {
+            connection: {
+                type: 'object',
+                properties: {
+                    apiKey: {type: 'string', title: 'API Key', format: 'password'},
+                },
+                required: ['apiKey'],
+                sensitive: ['apiKey'],
+            },
+            parameters: {
+                type: 'object',
+                properties: {
+                    temperature: {type: 'number', title: 'Temperature', minimum: 0, maximum: 2},
+                    maxOutputTokens: {type: 'integer', title: 'Max Output Tokens', minimum: 1},
+                    topP: {type: 'number', title: 'Top P', minimum: 0, maximum: 1},
+                    topK: {type: 'integer', title: 'Top K', minimum: 1},
+                },
+            },
+        };
     }
 
     getCapabilities(): ProviderCapabilities {

@@ -6,8 +6,7 @@
 
 ## Overview
 
-The Gemini provider plugin enables Holo to communicate with Google's Gemini API. It provides bidirectional translation
-between Gemini's native API and the portable Holo format using the `@google/genai` SDK.
+The Gemini provider plugin enables Holo to communicate with Google's Gemini API. It provides bidirectional translation between Gemini's native API and the portable Holo format using the `@google/genai` SDK.
 
 ### Key Features
 
@@ -38,8 +37,7 @@ npm install @holokai/holo-provider-gemini
 
 ### Automatic Discovery
 
-When installed in a Holo worker environment, this plugin is automatically discovered and loaded. No manual registration
-required.
+When installed in a Holo worker environment, this plugin is automatically discovered and loaded. No manual registration required.
 
 ### Configuration
 
@@ -61,12 +59,12 @@ Add a provider configuration to your Holo deployment:
 
 ## Protocols
 
-| Protocol                       | Capability       | Route                                         | Method |
-|--------------------------------|------------------|-----------------------------------------------|--------|
-| `gemini.generateContent`       | Chat             | `/v1beta/models/:model:generateContent`       | POST   |
-| `gemini.streamGenerateContent` | Chat (streaming) | `/v1beta/models/:model:streamGenerateContent` | POST   |
-| `gemini.embedContent`          | Embed            | `/v1beta/models/:model:embedContent`          | POST   |
-| `gemini.models`                | Models           | `/v1beta/models`                              | GET    |
+| Protocol | Capability | Route | Method |
+|----------|------------|-------|--------|
+| `gemini.generateContent` | Chat | `/v1beta/models/:model:generateContent` | POST |
+| `gemini.streamGenerateContent` | Chat (streaming) | `/v1beta/models/:model:streamGenerateContent` | POST |
+| `gemini.embedContent` | Embed | `/v1beta/models/:model:embedContent` | POST |
+| `gemini.models` | Models | `/v1beta/models` | GET |
 
 The default protocol is `gemini.generateContent`.
 
@@ -112,29 +110,29 @@ plugins/holo-provider-gemini/
 
 ### Request Translation (Holo -> Gemini)
 
-| Holo Field                     | Gemini Field                       |
-|--------------------------------|------------------------------------|
-| `messages[].role: 'user'`      | `contents[].role: 'user'`          |
-| `messages[].role: 'assistant'` | `contents[].role: 'model'`         |
-| `messages[].content` (text)    | `contents[].parts[].text`          |
-| `messages[].content` (image)   | `contents[].parts[].inlineData`    |
-| `system`                       | `systemInstruction`                |
-| `max_tokens`                   | `generationConfig.maxOutputTokens` |
-| `temperature`                  | `generationConfig.temperature`     |
-| `top_p`                        | `generationConfig.topP`            |
-| `top_k`                        | `generationConfig.topK`            |
-| `stop_sequences`               | `generationConfig.stopSequences`   |
-| `tools`                        | `tools[].functionDeclarations`     |
+| Holo Field | Gemini Field |
+|------------|-------------|
+| `messages[].role: 'user'` | `contents[].role: 'user'` |
+| `messages[].role: 'assistant'` | `contents[].role: 'model'` |
+| `messages[].content` (text) | `contents[].parts[].text` |
+| `messages[].content` (image) | `contents[].parts[].inlineData` |
+| `system` | `systemInstruction` |
+| `max_tokens` | `generationConfig.maxOutputTokens` |
+| `temperature` | `generationConfig.temperature` |
+| `top_p` | `generationConfig.topP` |
+| `top_k` | `generationConfig.topK` |
+| `stop_sequences` | `generationConfig.stopSequences` |
+| `tools` | `tools[].functionDeclarations` |
 
 ### Response Translation (Gemini -> Holo)
 
-| Gemini Field                         | Holo Field                   |
-|--------------------------------------|------------------------------|
+| Gemini Field | Holo Field |
+|-------------|------------|
 | `candidates[0].content.parts[].text` | `choices[0].message.content` |
-| `candidates[0].finishReason`         | `choices[0].finish_reason`   |
-| `usageMetadata.promptTokenCount`     | `usage.prompt_tokens`        |
-| `usageMetadata.candidatesTokenCount` | `usage.completion_tokens`    |
-| `usageMetadata.totalTokenCount`      | `usage.total_tokens`         |
+| `candidates[0].finishReason` | `choices[0].finish_reason` |
+| `usageMetadata.promptTokenCount` | `usage.prompt_tokens` |
+| `usageMetadata.candidatesTokenCount` | `usage.completion_tokens` |
+| `usageMetadata.totalTokenCount` | `usage.total_tokens` |
 
 ---
 
