@@ -52,7 +52,7 @@ export class GeminiProviderPlugin extends BasePlugin implements IProviderPlugin 
                     apiKey: {type: 'string', title: 'API Key', format: 'password'},
                 },
                 required: ['apiKey'],
-                sensitive: ['apiKey'],
+                encrypted: ['apiKey'],
             },
             parameters: {
                 type: 'object',
