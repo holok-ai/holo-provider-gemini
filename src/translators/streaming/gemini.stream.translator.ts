@@ -5,7 +5,7 @@ import {GeminiMessageStartTranslator} from './gemini.message.start.translator';
 import {GeminiMessageDeltaTranslator} from './gemini.message.delta.translator';
 import {GeminiMessageStopTranslator} from './gemini.message.stop.translator';
 import {GeminiContentDeltaTranslator} from './gemini.content.delta.translator';
-import {toGeminiFinishReason} from '../../utils/finish.reason.mapper.js';
+import {toGeminiFinishReason} from '../../utils/finish.reason.mapper';
 import {StreamTranslator} from "@holokai/holo-sdk/provider";
 import type {HoloStreamChunk} from "@holokai/holo-types/holo";
 import type {GenerateContentResponse} from "@google/genai";

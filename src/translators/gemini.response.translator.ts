@@ -7,7 +7,7 @@ import type {HoloMessage, HoloResponse} from "@holokai/holo-types/holo";
 import type {GenerateContentResponse} from "@google/genai";
 import {FinishReason} from "@google/genai";
 import {GeminiResponseMessageTranslator} from "./gemini.response.message.translator";
-import {toGeminiFinishReason, toHoloFinishReason} from '../utils/finish.reason.mapper.js';
+import {toGeminiFinishReason, toHoloFinishReason} from '../utils/finish.reason.mapper';
 
 @injectable()
 export class GeminiResponseTranslator extends BaseTranslator<HoloResponse, GenerateContentResponse> {

@@ -4,7 +4,7 @@ import {pickDefined} from '@holokai/holo-sdk';
 import type {HoloStreamChunk} from '@holokai/holo-types/holo';
 import type {GenerateContentResponse} from "@google/genai";
 import {FinishReason} from '@google/genai';
-import {toGeminiFinishReason, toHoloFinishReason} from '../../utils/finish.reason.mapper.js';
+import {toGeminiFinishReason, toHoloFinishReason} from '../../utils/finish.reason.mapper';
 import {StreamTranslator} from "@holokai/holo-sdk/provider";
 import {GeminiUsageTranslator} from '../gemini.usage.translator';
 

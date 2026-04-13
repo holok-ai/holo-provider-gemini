@@ -1,4 +1,4 @@
-import {GeminiProviderPlugin} from './plugin.js';
+import {GeminiProviderPlugin} from './plugin';
 
 export {GeminiProviderPlugin};
 

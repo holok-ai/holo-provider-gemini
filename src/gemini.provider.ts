@@ -7,10 +7,10 @@ import type {
     ProviderContext
 } from '@holokai/holo-types/provider';
 import {EmbedContentParameters, GenerateContentParameters, GoogleGenAI} from '@google/genai';
-import {GeminiAuditor} from './gemini.auditor.js';
-import {GeminiTranslator} from './gemini.translator.js';
-import {GeminiErrorResponse, GeminiErrorStatus, GeminiResponseFactory} from './gemini.response.factory.js';
-import {GeminiProtocols} from './plugin.js';
+import {GeminiAuditor} from './gemini.auditor';
+import {GeminiTranslator} from './gemini.translator';
+import {GeminiErrorResponse, GeminiErrorStatus, GeminiResponseFactory} from './gemini.response.factory';
+import {GeminiProtocols} from './plugin';
 
 export class GeminiProvider extends BaseProvider<GoogleGenAI, any> {
 

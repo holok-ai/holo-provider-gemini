@@ -2,13 +2,13 @@ import {BasePlugin, normalizePricingDataset} from '@holokai/holo-sdk/plugin';
 import type {IProviderPlugin, PluginContext, PluginPricingSheet, PluginSchema} from '@holokai/holo-types/plugin';
 import type {PricingSheetModel} from '@holokai/holo-types/entities';
 import {ProtocolCapability} from "@holokai/holo-types/entities";
-import {manifest} from "./manifest.js";
+import {manifest} from "./manifest";
 import type {IProvider, IWireAdapter, ProviderCapabilities, WireAdapterParams} from "@holokai/holo-types/provider";
 import {RouteDefinition, RouteHandler} from "@holokai/holo-types/routing";
-import {GeminiProvider} from "./gemini.provider.js";
-import {GeminiWireAdapter} from "./gemini.wire.adapter.js";
-import {GeminiTranslator} from "./gemini.translator.js";
-import {GEMINI_PRICING_DATASET} from "./gemini.pricing.js";
+import {GeminiProvider} from "./gemini.provider";
+import {GeminiWireAdapter} from "./gemini.wire.adapter";
+import {GeminiTranslator} from "./gemini.translator";
+import {GEMINI_PRICING_DATASET} from "./gemini.pricing";
 
 export const GeminiProtocols = {
     GENERATE_CONTENT: 'gemini.generateContent',
